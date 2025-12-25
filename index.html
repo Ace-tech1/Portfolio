@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acetekh: Front-End | UI/UX</title>
+    <meta name="description"
+        content="Acetekh - Philip Clement's portfolio showcasing expertise in UI/UX design, front-end development. Explore innovative projects and skills.">
+    <link rel="icon" href="./image/Acetekhlogo.PNG" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Font and Reset */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d10;
+        
+            color: #e5e7eb;
+          
+        }
+
+        html {
+            scroll-behavior: smooth;
+
+        }
+        /* Custom Animations */
+       
+        /* Base class for elements that should animate */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-title .char {
+            opacity: 0;
+            transform: translateY(20px);
+            display: inline-block;
+            color: #8b5cf6;
+            transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hero-title .char.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-title .char:nth-child(1) {
+            transition-delay: 0.09s;
+        }
+
+        /* C */
+        .hero-title .char:nth-child(2) {
+            transition-delay: 0.5s;
+        }
+
+        /* A */
+        .hero-title .char:nth-child(3) {
+            transition-delay: 0.15s;
+        }
+
+        /* T */
+        .hero-title .char:nth-child(4) {
+            transition-delay: 0.8s;
+        }
+
+        /* A */
+        .hero-title .char:nth-child(5) {
+            transition-delay: 0.25s;
+        }
+
+        /* L */
+        .hero-title .char:nth-child(6) {
+            transition-delay: 0.3s;
+        }
+
+        /* Y */
+        .hero-title .char:nth-child(7) {
+            transition-delay: 0.35s;
+        }
+
+        /* S */
+        .hero-title .char:nth-child(8) {
+            transition-delay: 0.4s;
+        }
+
+
+        /* Gradient Button Hover */
+        .btn-gradient {
+            background-image: linear-gradient(to right, #8b5cf6, #ec4899);
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn-gradient:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+
+        /* Custom Glowing Border for Hero */
+        .glowing-border {
+            border: 2px solid transparent;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            background-image: linear-gradient(#0d0d10, #0d0d10), linear-gradient(to right, #8b5cf6, #ec4899);
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+
+        }
+
+        #mobile-menu.open {
+            transform: translateX(0);
+
+        }
+
+        /* Skill Icon Animation */
+        .skill-icon-box {
+            transition: background-color 0.3s ease;
+        }
+
+        .skill-icon-box:hover {
+            background-color: #1e1e24;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 bg-[#0d0d10]/95 backdrop-blur-sm shadow-lg border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+            <div class="flex justify-between items-center h-16 p-10">
+                <a href="#"
+                    class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 tracking-wider ">
+                    ACETEKH
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium items-center">
+                    <a href="#about" class="text-gray-300 hover:text-purple-400 transition duration-300">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-purple-400 transition duration-300">Skills</a>
+                    <a href="#projects"
+                        class="text-gray-300 hover:text-purple-400 transition:ease-in-out duration-300 ">Projects</a>
+                    <a href="#contact" class="btn-gradient px-4 py-2 rounded-lg text-white font-semibold shadow-lg 
+           transition duration-300 ease-in-out transform hover:scale-105 
+           shadow-purple-500/50 hover:shadow-purple-400/70">
+                        Contact
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button"
+                    class="md:hidden text-gray-300 hover:text-purple-400 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+  <div id="mobile-menu" class="fixed inset-y-0 right-0 w-72 bg-[#141418] z-50 p-8 shadow-2xl md:hidden flex flex-col">
+    <div class="flex justify-end">
+        <button id="close-menu-button" class="text-gray-300 hover:text-purple-400 focus:outline-none">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+
+    <nav class="flex flex-col space-y-8 mt-10 text-xl">
+        <a href="#about" class="text-gray-300 hover:text-purple-400 transition duration-300 mobile-nav-link">About</a>
+        <a href="#skills" class="text-gray-300 hover:text-purple-400 transition duration-300 mobile-nav-link">Skills</a>
+        <a href="#projects" class="text-gray-300 hover:text-purple-400 transition duration-300 mobile-nav-link">Projects</a>
+
+        <a href="#contact" class="btn-gradient px-4 py-3 rounded-lg text-white font-semibold text-center shadow-lg mobile-nav-link
+       transition duration-300 ease-in-out transform hover:scale-105 
+       shadow-purple-500/50 hover:shadow-purple-400/70">
+            Contact
+        </a>
+    </nav>
+
+    <div class="mt-auto border-t border-gray-800/50 pt-8">
+        <div class="flex items-center gap-3 mb-6">
+            <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+            </span>
+            <span class="text-xs font-medium text-gray-500 uppercase tracking-widest">Available for work</span>
+        </div>
+
+     <div class="flex space-x-6 text-gray-400 mb-8">
+    <a href="#" class="hover:text-green-500 socialmedia" aria-label="WhatsApp">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
+
+    <a href="#" class="hover:text-white socialmedia" aria-label="Twitter">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+        </svg>
+    </a>
+
+    <a href="#" class="hover:text-pink-500 socialmedia" aria-label="Instagram">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.063-1.366.333-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.2 4.353 2.612 6.777 6.97 6.977 1.28.057 1.688.072 4.958.072s3.678-.014 4.958-.072c4.354-.2 6.777-2.612 6.977-6.977.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.2-4.353-2.612-6.777-6.97-6.977C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+    </a>
+    <a href="#" class="hover:text-blue-500  socialmedia" aria-label="linkedin">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+
+            <a href="#" class="hover:text-blue-400 socialmedia" aria-label="github">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            </a>
+</div>
+
+
+
+        <p class="text-[10px] text-gray-600 uppercase tracking-widest">&copy; <span id="year">2025</span> Acetekh • Portfolio</p>
+
+    </div>
+</div>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative overflow-hidden pt-16 md:pt-32 pb-24 border-b border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+                <p class="text-lg text-gray-400 mb-4 animate-on-scroll">Hello, I'm Philip Clement, The...</p>
+
+
+
+                <h1 class="w-full text-center text-4xl sm:text-6xl md:text-8xl font-extrabold leading-tight tracking-tighter mb-6 hero-title"
+                    data-splitting="chars">CATALYST</h1>
+
+                <div
+                    class="glowing-border inline-block rounded-xl p-0.5 mt-8 mb-12 shadow-2xl shadow-purple-900/50 animate-on-scroll delay-500">
+                    <div
+                        class="bg-[#141418] rounded-xl p-4 md:p-6 flex flex-wrap justify-center gap-4 text-sm md:text-lg font-medium">
+                        <span class="text-gray-600">|</span>
+                        <span class="text-pink-400">Front-End Developer</span>
+                        <span class="text-gray-600">|</span>
+                        <span class="text-purple-400">UI/UX Designer</span>
+                        <span class="text-gray-600">|</span>
+                        <!-- <span class="text-blue-400">Mobile App Dev</span> -->
+                        <!-- <span class="text-gray-600">|</span> -->
+                        <!-- <span class="text-green-400">Data Scientist</span> -->
+                    </div>
+                </div>
+
+                <p class="max-w-3xl mx-auto text-xl text-gray-400 mb-10 animate-on-scroll delay-700 leading-relaxed">
+                    Design driven by empathy. Code driven by performance. I turn static visions into intuitive,
+                    high-performance interfaces.
+                </p>
+
+                <a href="#projects"
+                    class="btn-gradient text-white px-8 py-4 rounded-full text-lg font-bold shadow-xl shadow-purple-900/30 animate-on-scroll delay-900">
+                    See My Impact →
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="about-section bg-[#141418]  border-b border-gray-800 animate-on-scroll">
+            <h2 class="about-title">About Me</h2>
+
+
+            <p class="about-desc">
+                I'm Philip Clement — a Design Engineer
+                passionate about creating clean, intuitive, and high-performance
+                digital experiences. I blend design thinking with efficient code to
+                bring ideas to life with clarity and creativity.
+            </p>
+            <div class="my-10 p-2  bg-gradient-to-r from-violet-900/20 to-pink-900/20 border-l-4 border-pink-500 rounded-r-xl">
+                <p class="text-lg md:text-2xl font-bold italic text-white m-0 ">"I don't just create mockups; I build
+                    the reality."</p>
+            </div>
+
+            <div class="social-media  ">
+                <a href="https://wa.me/2349167270900" class="hover:text-green-500 text-green-500  socialmedia social"><i class="fab fa-whatsapp "></i></a>
+                <a href="https://www.instagram.com/armanii_beecroft/#" class="hover:text-pink-500 text-pink-500 socialmedia social" ><i
+                        class="fab fa-instagram "></i></a>
+                <a href="https://x.com/acetekh" class="hover:text-white text-white socialmedia social"><i class="fab fa-x-twitter "></i></a>
+                <a href="https://github.com/Ace-tech1" class="hover:text-blue-400 text-blue-400 socialmedia social"><i class="fab fa-github "></i></a>
+                <a href="https://www.linkedin.com/in/philip-clement-b55976386/" class="hover:text-blue-500 text-blue-500 socialmedia social"><i
+                        class="fab fa-linkedin "></i></a>
+            </div>
+
+            <div class="cv-container">
+                <a href="MY CV.pdf" download class="cv-glass-btn">
+                    Download CV ⤓
+                </a>
+            </div>
+
+
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="py-20 md:py-32 bg-[#141418] border-b border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-16 text-white animate-on-scroll">
+                    Front-End <span class="text-purple-400">Architecture</span>
+                </h2>
+
+
+
+
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto max-w-4xl">
+
+                    <div
+                        class="bg-[#1c1c24] p-8 rounded-xl shadow-2xl skill-icon-box border border-violet-500/20 hover:border-violet-500/50 transition duration-300">
+                        <div class="text-purple-400 mb-4 ">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3 text-white ">UI/UX Designer</h3>
+                        <p class="text-gray-400 ">
+                            Figma, Framer, and Sketch used to transform data and user needs into intuitive design
+                            systems, high-fidelity prototypes, and usability tests.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-[#1c1c24] p-8 rounded-xl shadow-2xl skill-icon-box border border-pink-500/20 hover:border-pink-500/50 transition duration-300">
+                        <div class="text-pink-400 mb-4">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 20l4-16m4 4l4 4-4 4M6 4l-4 4 4 4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3 text-white">Front-End Developer</h3>
+                        <p class="text-gray-400">
+                            Architecting modern, component-based interfaces (React, Next.js) using Tailwind CSS to
+                            deliver high-performance, accessible, and scalable web solutions.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION (THE CORE) -->
+        <section id="projects" class="py-20 md:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-6 text-white animate-on-scroll">
+                    My <span class="text-purple-400">Portfolio</span> of Work
+                </h2>
+                <p class="text-xl text-center text-gray-400 mb-16 animate-on-scroll delay-100">
+                    Where Design meets Logic, and Code creates the Experience.
+                </p>
+
+                <div class="space-y-16">
+
+
+                    <!-- PROJECT 1: crestone -->
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center border-b border-gray-800 pb-16 animate-on-scroll delay-300 project-card">
+                        <div
+                            class="lg:col-span-6 order-1 lg:order-2 bg-gray-900 p-6 rounded-xl shadow-inner shadow-purple-900/30">
+
+                            <!-- Placeholder Image -->
+                            <img src="./image/crestone.png" alt="ace gadgets" class="rounded-lg w-full glowing-border">
+                        </div>
+                        <div class="lg:col-span-6 order-1 lg:order-2">
+                            <span
+                                class="text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full mb-3 inline-block border border-purple-400/50">Front-End
+                                Focus</span>
+                            <h3 class="text-3xl font-bold mb-4 text-white">Professional Services Portfolio Website:
+                                Crestone Living</h3>
+                            <p class="text-gray-400 mb-6">
+                                <strong>Challenge:</strong> Personal project focused on developing a functional
+                                e-commerce platform that streamlines ordering by directing users to a simple, direct
+                                contact method.
+                            </p>
+                            <ul class="space-y-2 text-gray-300">
+                                <li><strong>Organization:</strong>Company</li>
+
+                                <li> <strong>Front-End:</strong> Hand-coded the entire interface using clean HTML,
+                                    modern CSS, and vanilla JavaScript to ensure pixel-perfect fidelity,
+                                    performance, and seamless navigation.</li>
+
+                                <li> <strong>Key Features:</strong> For this project I implemented a full figma design from the home page to the contact page ensuring all sections align and correspond to the design provided.
+                                    </li>
+
+                            </ul>
+                            <a href="https://ace-tech1.github.io/Living/"
+                                class="inline-flex items-center text-sm text-purple-400 font-medium mt-6 group hover:text-purple-300 transition:ease-in-out duration-300">
+                                View live link
+                                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 2: hospital -->
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center border-b border-gray-800 pb-16 animate-on-scroll delay-200 project-card">
+                        <div class="lg:col-span-6 order-2 lg:order-1">
+
+                            <span
+                                class="text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full mb-3 inline-block border border-purple-400/50">
+                                Front-End Focus
+                            </span>
+                            <h3 class="text-3xl font-bold mb-4 text-white">Healthcare: PMC
+                            </h3>
+                            <p class="text-gray-400 mb-6 " 100ms latency.>
+                                <strong>Challenge:</strong> Build a fully functional hospital website for booking and
+                                viewing patient appointment.
+                            </p>
+                            <ul class="space-y-2 text-gray-300">
+                                <li><strong>Team Lead:</strong> Directed all project resources and ensured successful
+                                    delivery across design and engineering tracks.</li>
+                                <li><strong>Organization:</strong> Personal Portfolio Build</li>
+
+                                <li><strong>UI/UX:</strong> Established the foundational brand identity (logo)</li>
+                                <li><strong>Front-End:</strong> High-performance React build. Animations and custom
+                                    components for dynamic user experience.</li>
+                            </ul>
+
+                            <a href="https://ace-tech1.github.io/pmc/"
+                                class="inline-flex items-center text-sm text-purple-400 font-medium mt-6 group hover:text-purple-300 transition:ease-in-out duration-300">
+                                View live link
+                                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                        <div
+                            class="lg:col-span-6 order-1 lg:order-2 bg-gray-900 p-6 rounded-xl shadow-inner shadow-purple-900/30">
+
+                            <a href="https://ace-tech1.github.io/pmc/">
+
+                                <img src="./image/pmc hospital.png" alt="Real-time financial dashboard mockup"
+                                    class="rounded-lg w-full glowing-border">
+                            </a>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- PROJECT 3: ace gadgets  -->
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center border-b border-gray-800 pb-16 animate-on-scroll delay-300 project-card">
+                        <div
+                            class="lg:col-span-6 order-1 lg:order-2 bg-gray-900 p-6 rounded-xl shadow-inner shadow-purple-900/30">
+
+                            <img src="./image/ace gadgets.png" alt="ace gadgets"
+                                class="rounded-lg w-full glowing-border">
+                        </div>
+                        <div class="lg:col-span-6 order-1 lg:order-2">
+                            <span
+                                class="text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full mb-3 inline-block border border-purple-400/50">Front-End
+                                Focus</span>
+                            <h3 class="text-3xl font-bold mb-4 text-white">E-Commerce: Ace Gadgets</h3>
+                            <p class="text-gray-400 mb-6">
+                                <strong>Challenge:</strong> Personal project focused on developing a functional
+                                e-commerce platform that streamlines ordering by directing users to a simple, direct
+                                contact method.
+                            </p>
+                            <ul class="space-y-2 text-gray-300">
+                                <li> <strong>Front-End:</strong> Hand-coded the entire interface using clean HTML,
+                                    modern CSS, and vanilla JavaScript to ensure pixel-perfect fidelity, lightweight
+                                    performance, and seamless navigation.</li>
+                                <li> <strong>Key Features:</strong> Implemented a direct order feature that immediately
+                                    links customers to WhatsApp, intentionally bypassing complex checkout funnels for
+                                    quick sales conversion.</li>
+
+                            </ul>
+                            <a href="https://ace-tech1.github.io/pmc/"
+                                class="inline-flex items-center text-sm text-purple-400 font-medium mt-6 group hover:text-purple-300 transition:ease-in-out duration-300">
+                                View live link
+                                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 4: portfolio-->
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center border-b border-gray-800 pb-16 animate-on-scroll delay-400 project-card">
+                        <div class="lg:col-span-6 order-2 lg:order-1">
+                            <span
+                                class="text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full mb-3 inline-block border border-purple-400/50">Front-End
+                                Focus</span>
+                            <h3 class="text-3xl font-bold mb-4 text-white">Portfolio: Acetekh</h3>
+                            <p class="text-gray-400 mb-6">
+                                <strong>Challange:</strong> Build a portfolio with HTML CSS and Js adding black and
+                                white features.
+                            </p>
+                            <ul class="space-y-2 text-gray-300">
+                                <li><strong>Organization: School Project</strong></li>
+                                <li><strong>Front-End:</strong> Developed a dynamic theme toggle and implemented a
+                                    contact form that persists user data using JavaScript Local Storage.</li>
+                            </ul>
+                            <a href="https://ace-tech1.github.io/acePortfolio/"
+                                class="inline-flex items-center text-sm text-purple-400 font-medium mt-6 group hover:text-purple-300 transition:ease-in-out duration-300">
+                                View live link
+                                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                        <div
+                            class="lg:col-span-6 order-1 lg:order-2 bg-gray-900 p-6 rounded-xl shadow-inner shadow-green-900/30">
+                            <img src="./image/aceportfolio.png" alt="portfolio"
+                                class="rounded-lg w-full glowing-border">
+                        </div>
+                    </div>
+
+
+                    <!-- PROJECT 5: Biography  -->
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center border-b border-gray-800 pb-16 animate-on-scroll delay-300 project-card">
+                        <div
+                            class="lg:col-span-6 order-1 lg:order-2 bg-gray-900 p-6 rounded-xl shadow-inner shadow-purple-900/30">
+
+
+                            <img src="./image/biography.png" alt="biography" class="rounded-lg w-full glowing-border">
+                        </div>
+                        <div class="lg:col-span-6 order-1 lg:order-2">
+                            <span
+                                class="text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full mb-3 inline-block border border-purple-400/50">Front-End
+                                Focus</span>
+                            <h3 class="text-3xl font-bold mb-4 text-white">eProject: Biography(Marie Curie)</h3>
+                            <p class="text-gray-400 mb-6">
+                                <strong>Challenge:</strong> Developed a fully responsive biographical website for a
+                                Nobel prize in the science genre.
+                            </p>
+                            <ul class="space-y-2 text-gray-300">
+                                <li><strong>Team Lead:</strong> Led project execution, serving as the bridge between the
+                                    UI/UX and Front-End teams to ensure seamless integration and alignment.</li>
+                                <li><strong>Organization:</strong>School Semester Project.</li>
+                                <li> <strong>Front-End:</strong> Built the entire responsive website from scratch (HTML,
+                                    CSS, JS), strictly adhering to the finalized design templates.</li>
+                                <li> <strong>UI/UX:</strong> Co-designed the complete user interface, including creation
+                                    of the project logo, wireframes, prototypes, and a fully responsive screen design.
+                                </li>
+
+                                <li> <strong>Key Features:</strong> Ensured all project milestones and submission
+                                    deadlines were met through proactive tracking and team coordination.</li>
+
+                            </ul>
+                            <a href="https://ace-tech1.github.io/biography/"
+                                class="inline-flex items-center text-sm text-purple-400 font-medium mt-6 group hover:text-purple-300 transition:ease-in-out duration-300">
+                                View live link
+                                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <!-- PROJECT 6: ujobme -->
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center border-b border-gray-800 pb-16 animate-on-scroll delay-200 project-card">
+                        <div class="lg:col-span-6 order-2 lg:order-1">
+
+                            <span
+                                class="text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full mb-3 inline-block border border-purple-400/50">
+                                UI/UX Focus
+                            </span>
+                            <h3 class="text-3xl font-bold mb-4 text-white">Project: Student Job platform</h3>
+                            <p class="text-gray-400 mb-6">
+                                <strong>Challenge:</strong> Design a fully responsive Job Platform for
+                                Studentss
+                            </p>
+                            <ul class="space-y-2 text-gray-300">
+                                <li><strong>Organization:</strong>School Project.</li>
+                                <li> <strong>UI/UX:</strong> Designed the complete user interface, user experience,
+                                    wireframe and complete prototype and a responsive screen design.
+                                </li>
+                            </ul>
+                            <a href="https://www.figma.com/proto/yCz3thxiddrEZY7uIS8XsJ/Untitled?page-id=0%3A1&node-id=765-27&viewport=628%2C74%2C0.04&t=iAMXLWvN4joIrnPT-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=765%3A27&hide-ui=1"
+                                class="inline-flex items-center text-sm text-purple-400 font-medium mt-6 group hover:text-purple-300 transition:ease-in-out duration-300">
+                                View live link
+                                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                        <div
+                            class="lg:col-span-6 order-1 lg:order-2 bg-gray-900 p-6 rounded-xl shadow-inner shadow-purple-900/30">
+
+                            <a
+                                href="https://www.figma.com/proto/yCz3thxiddrEZY7uIS8XsJ/Untitled?page-id=0%3A1&node-id=765-27&viewport=628%2C74%2C0.04&t=iAMXLWvN4joIrnPT-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=765%3A27&hide-ui=1">
+
+                                <img src="./image/ujob.png" alt="Real-time financial dashboard mockup"
+                                    class="rounded-lg w-full glowing-border">
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <!-- PROJECT 7: crestone  -->
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center border-b border-gray-800 pb-16 animate-on-scroll delay-300 project-card">
+                        <div
+                            class="lg:col-span-6 order-1 lg:order-2 bg-gray-900 p-6 rounded-xl shadow-inner shadow-purple-900/30">
+
+
+                            <img src="./image/crest.png" alt="biography" class="rounded-lg w-full glowing-border">
+                        </div>
+                        <div class="lg:col-span-6 order-1 lg:order-2">
+                            <span
+                                class="text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full mb-3 inline-block border border-purple-400/50">UI/UX
+                                Focus</span>
+                            <h3 class="text-3xl font-bold mb-4 text-white">Professional Services Portfolio Website:
+                                Crestone Living</h3>
+                            <p class="text-gray-400 mb-6">
+                                <strong>Challenge:</strong> Developed a fully responsive biographical website for a
+                                Nobel prize in the science genre.
+                            </p>
+                            <ul class="space-y-2 text-gray-300">
+                                <li><strong>Organization:</strong>Company.</li>
+                                <li> <strong>UI/UX:</strong> Co-designed the complete user interface, including creation
+                                    of the project logo, wireframes, prototypes, and a fully responsive screen design.
+                                </li>
+
+                                <li> <strong>Key Features:</strong> Ensured all project milestones and submission
+                                    deadlines were met through proactive tracking and team coordination.</li>
+
+                            </ul>
+                            <a href="https://www.figma.com/proto/yCz3thxiddrEZY7uIS8XsJ/Untitled?page-id=0%3A1&node-id=2547-309&viewport=628%2C74%2C0.04&t=iAMXLWvN4joIrnPT-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=2498%3A201&hide-ui=1"
+                                class="inline-flex items-center text-sm text-purple-400 font-medium mt-6 group hover:text-purple-300 transition:ease-in-out duration-300">
+                                View live link
+                                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <!-- PROJECT 8: ace burger -->
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center border-b border-gray-800 pb-16 animate-on-scroll delay-200 project-card">
+                        <div class="lg:col-span-6 order-2 lg:order-1">
+
+                            <span
+                                class="text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full mb-3 inline-block border border-purple-400/50">
+                                UI/UX Focus
+                            </span>
+
+                            <h3 class="text-3xl font-bold mb-4 text-white">Project: Ace Burger</h3>
+                            <p class="text-gray-400 mb-6">
+                                <strong>Challenge:</strong> Redesign a burger menu
+                            </p>
+                            <ul class="space-y-2 text-gray-300">
+
+                                <li><strong>Organization:</strong>Personal Project</li>
+
+
+                                <li> <strong>UI/UX:</strong> Shapes and images used to create a visually appealing and
+                                    user-friendly burger menu.
+                                </li>
+                                <li> <strong>Key Features:</strong> Redesigned a burger menu with consistent color, text,
+                                    button and placement layout. 
+                                </li>
+
+                            </ul>
+
+
+                            <a href="https://www.figma.com/proto/yCz3thxiddrEZY7uIS8XsJ/Untitled?node-id=3716-253&viewport=145%2C365%2C0.09&t=z6RFCkNdyExyuU53-0&scaling=contain&content-scaling=fixed&starting-point-node-id=3716%3A253&show-proto-sidebar=1&hide-ui=1"
+                                class="inline-flex items-center text-sm text-purple-400 font-medium mt-6 group hover:text-purple-300 transition:ease-in-out duration-300">
+                                View live link
+                                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                        <div
+                            class="lg:col-span-6 order-1 lg:order-2 bg-gray-900 p-6 rounded-xl shadow-inner shadow-purple-900/30">
+
+                            <a href="https://ace-tech1.github.io/pmc/">
+
+                                <img src="./image/burgerr.png" alt="Real-time financial dashboard mockup"
+                                    class="rounded-lg w-full glowing-border">
+                            </a>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- PROJECT 9: fashion  -->
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center border-b border-gray-800 pb-16 animate-on-scroll delay-300 project-card">
+                        <div
+                            class="lg:col-span-6 order-1 lg:order-2 bg-gray-900 p-6 rounded-xl shadow-inner shadow-purple-900/30">
+
+                            <img src="./image/style.jpeg" alt="ace gadgets" class="rounded-lg w-full glowing-border">
+                        </div>
+                        <div class="lg:col-span-6 order-1 lg:order-2">
+                            <span
+                                class="text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full mb-3 inline-block border border-purple-400/50">UI/UX
+                                Focus</span>
+                            <h3 class="text-3xl font-bold mb-4 text-white">Project: Fashion</h3>
+                            <p class="text-gray-400 mb-6">
+                                <strong>Challenge:</strong> Design fashion e-commerce add to cart to be clear, and
+                                visually appealing.
+                            </p>
+                            <ul class="space-y-2 text-gray-300">
+                                <li><strong>Organization:</strong>Personal Project</li>
+                                <li> <strong>UI/UX:</strong> A well detailed design showcasing clear images of cloths with
+                                    prices and add to cart button.
+                                </li>
+
+                                <li><strong>Key Features:</strong>A clean User interface for purchasing cloths online with
+                                    buttons and images ensuring clearity.</li>
+
+
+                            </ul>
+
+                            <a href="https://www.figma.com/proto/yCz3thxiddrEZY7uIS8XsJ/Untitled?node-id=3733-255&viewport=145%2C365%2C0.09&t=z6RFCkNdyExyuU53-0&scaling=contain&content-scaling=fixed&starting-point-node-id=3733%3A255&hide-ui=1"
+                                class="inline-flex items-center text-sm text-purple-400 font-medium mt-6 group hover:text-purple-300 transition:ease-in-out duration-300">
+                                View live link
+                                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <!-- PROJECT 10: authentication-->
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center animate-on-scroll delay-400 project-card  ">
+                        <div class="lg:col-span-6 order-2 lg:order-1 mt-28 ">
+                            <span
+                                class="text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-900/30 px-3 py-1 rounded-full mb-3 inline-block border border-purple-400/50">UI/UX
+                                Focus</span>
+                            <h3 class="text-3xl font-bold mb-4 text-white">Project: Authentication Page</h3>
+                            <p class="text-gray-400 mb-6">
+                                <strong>Challenge:</strong> Design an account page with a to login and sign up options.
+                            </p>
+                            <ul class="space-y-2 text-gray-300">
+
+                                <li><strong>Organization:</strong>Personal Project</li>
+                                <li> <strong>UI/UX:</strong> Focused on a straightforward and intuitive flow for user
+                                    authentication and clean interface with a distinctive look, utilizing <b>gradient
+                                        styling</b> for key buttons container borders to enhance visual hierarchy.
+                                </li>
+
+                                <li> <strong>Key Features:</strong> Designed a flexible sign-in/sign-up experience,
+                                    including options for quick, secure sign-in via <b>Google</b> and <b>Apple</b>
+                                    (Social Logins).</li>
+
+                            </ul>
+                            <a href="https://www.figma.com/proto/yCz3thxiddrEZY7uIS8XsJ/Untitled?node-id=3752-257&viewport=-1026%2C219%2C0.04&t=z6RFCkNdyExyuU53-0&scaling=contain&content-scaling=fixed&starting-point-node-id=3752%3A257&show-proto-sidebar=1&hide-ui=1"
+                                class="inline-flex items-center text-sm text-purple-400 font-medium mt-6 group hover:text-purple-300 transition:ease-in-out duration-300">
+                                View live link
+                                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                        <div
+                            class="lg:col-span-6 order-1 lg:order-2 bg-gray-900 p-6 rounded-xl shadow-inner shadow-green-900/30">
+                            <img src="./image/login:signup.jpeg" alt="portfolio"
+                                class="rounded-lg w-full glowing-border">
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT/CTA SECTION -->
+        <section id="contact" class="py-20 md:py-32 bg-[#0d0d10] border-t border-gray-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
+                <h2
+                    class="text-5xl font-extrabold text-white mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+                    Ready to build the future?
+                </h2>
+                <p class="text-xl text-gray-400 mb-10">
+                    Let's discuss how a unified approach to design, development, and data science can elevate your next
+                    project.
+                </p>
+                <a href="mailto:philipclementt@outlook.com"
+                    class="btn-gradient text-white px-10 py-4 rounded-full text-xl font-bold shadow-xl shadow-purple-900/50">
+                    Get in Touch
+                </a>
+            </div>
+        </section>
+
+
+
+
+        <div id="scrollProgressContainer" title="Scroll to Top">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" class="progress-track"></circle>
+                <circle cx="50" cy="50" r="45" class="progress-bar"></circle>
+            </svg>
+            <span class="scroll-icon">⬆</span>
+
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="py-8 bg-[#141418] border-t border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+                <p>&copy; <span id="year">2025</span> Acetekh</p>
+            </div>
+        </footer>
+
+
+
+    </main>
+
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>

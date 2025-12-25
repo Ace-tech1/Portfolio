@@ -1,0 +1,131 @@
+
+#scrollProgressContainer {
+    position: fixed;
+    bottom: 100px; 
+    right: 30px;
+    width: 50px; 
+    height: 50px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+}
+
+#scrollProgressContainer svg {
+    transform: rotate(-90deg); 
+}
+
+.progress-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.2); 
+    stroke-width: 5;
+}
+
+.progress-bar {
+    fill: none;
+    stroke: #8b5cf6; 
+    stroke-width: 5;
+    stroke-dasharray: 283; 
+    stroke-dashoffset: 283; 
+    transition: stroke-dashoffset 0.15s linear; 
+}
+
+
+.scroll-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+    color: #ec4899;
+}
+
+#scrollProgressContainer.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+
+
+/* social media and about  */
+
+.about-section {
+  text-align: center;
+  padding: 100px 10%;
+  color: #eee;
+}
+
+.about-title {
+  font-size: 48px;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #b06ff9, #ec4899);
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  display: inline-block;
+    font-size: clamp(28px, 6vw, 48px);
+}
+
+.about-desc {
+  max-width: 750px;
+  margin: 0 auto 40px auto;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #cfcfcf;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+.socialmedia{
+  transition: 0.3s ease;
+
+}
+.socialmedia:hover {
+  transform: translateY(-5px);}
+.socialmedia:active {
+  transform: translateY(0);}    
+
+.social {
+  font-size: 28px;
+  
+}
+
+
+
+.cv-container {
+  margin-top: 35px;
+}
+
+.cv-glass-btn {
+  display: inline-block;
+  padding: 14px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ec489a92;
+  /* color: #8a5cf68a; */
+  text-decoration: none;
+  border-radius: 12px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  transition: 0.3s ease;
+}
+
+.cv-glass-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+}
