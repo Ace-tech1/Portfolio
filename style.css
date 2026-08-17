@@ -27,7 +27,7 @@
 
 .progress-bar {
     fill: none;
-    stroke: #8b5cf6; 
+    stroke: #6e9794; 
     stroke-width: 5;
     stroke-dasharray: 283; 
     stroke-dashoffset: 283; 
@@ -41,7 +41,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1.2em;
-    color: #ec4899;
+    color: #0d9488;
 }
 
 #scrollProgressContainer.show {
@@ -64,7 +64,7 @@
 .about-title {
   font-size: 48px;
   margin-bottom: 20px;
-  background: linear-gradient(90deg, #b06ff9, #ec4899);
+  background: linear-gradient(90deg, #0d9488, #6e9794);
   background-clip: text;
   color: transparent;
   -webkit-background-clip: text;
@@ -112,7 +112,7 @@
   padding: 14px 40px;
   font-size: 18px;
   font-weight: 600;
-  color: #ec489a92;
+  color: #0d9488;
   /* color: #8a5cf68a; */
   text-decoration: none;
   border-radius: 12px;
